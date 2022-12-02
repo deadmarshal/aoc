@@ -36,6 +36,6 @@ sub part2{
   $score;
 }
 
-printf "part1: %d\n", part1($ARGV[0]);
-printf "part2: %d\n", part2($ARGV[0]);
+printf "Part1: %d\n", part1($ARGV[0]);
+printf "Part2: %d\n", part2($ARGV[0]);
 
