@@ -1,3 +1,5 @@
+#!/usr/bin/env sbcl --script
+
 (defparameter sample "sample.txt")
 (defparameter input "input.txt")
 
