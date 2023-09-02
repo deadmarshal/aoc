@@ -1,3 +1,4 @@
+// https://adventofcode.com/2022/day/1
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,7 +13,7 @@ public class DayOne {
       System.exit(1);
     }
     if(!Files.exists(Path.of(args[0]))){
-      System.err.println("input file does not exist!");
+      System.err.println("Input file does not exist!");
       System.exit(1);
     }
     List<String> list;
