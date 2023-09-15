@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use List::Compare;
 
-die "Usage: ./day03.pl input.txt" unless @ARGV == 1
+die "Usage: $0 input.txt" unless @ARGV == 1
   && $ARGV[0] =~ /\w+/;
 
 sub part1{

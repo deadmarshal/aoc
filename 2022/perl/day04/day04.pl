@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-die "Usage: ./day04.pl input.txt" unless @ARGV == 1
+die "Usage: $0 input.txt" unless @ARGV == 1
   && $ARGV[0] =~ /\w+/;
 
 sub part1{
