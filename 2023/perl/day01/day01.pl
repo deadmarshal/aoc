@@ -30,11 +30,11 @@ sub part2{
     my $idx = 0;
     while(my ($i,$ref) = each @numbers){
       last if defined $f && defined $l;
-      if(index($line,$ref->[0],$idx) != -1){
+      if(index($line,$ref->[0],$.) != -1){
 	$f = $ref->[1];
 	$idx = $i;
 	#$line =~ s/$ref->[0]//;
-	$line = substr $line,0,$idx;
+	#$line = substr $line,0,$idx;
       }
     }
     print "$line\t$f\t$l\n";
