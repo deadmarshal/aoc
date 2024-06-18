@@ -2,11 +2,13 @@
 # https://adventofcode.com/2020/day/7
 use strict;
 use warnings;
-use Graph::Directed;
+use Graph::Simple;
 use Data::Show;
 
 die "Usage: $0 input.txt" unless @ARGV == 1
   && $ARGV[0] =~ /\w+/;
+
+my %h = parse_file($ARGV[0]);
 
 sub parse_file{
   my ($file) = @_;
@@ -27,17 +29,14 @@ sub parse_file{
 }
 
 sub part1{
-  my ($file) = @_;
-  my %h = parse_file($file);
+  print show %h;
   1;
 }
 
 sub part2{
-  my ($file) = @_;
-  my %h = parse_file($file);
   1;
 }
 
-printf "Part1: %d\n", part1($ARGV[0]);
+printf "Part1: %d\n", part1;
 # printf "Part2: %d\n", part2($ARGV[0]);
 
