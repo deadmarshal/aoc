@@ -25,7 +25,7 @@ sub part1{
 sub part2{
   my ($file) = @_;
   open(my $fh,'<',$file) or die "Can't open file: $!";
-  my (@left,@right,%h,$res);
+  my (@left,@right,%h);
   while(<$fh>){
     my ($l,$r) = do{chomp; split /\s+/};
     push @left,$l;
@@ -33,8 +33,7 @@ sub part2{
   }
   close($fh);
   $h{$_}++ foreach @right;
-  $res = sum0 map {$_ * ($h{$_} || 0)} @left;
-  $res
+  sum0 map {$_ * ($h{$_} || 0)} @left;
 }
 
 printf "Part1: %d\n",part1($ARGV[0]);
