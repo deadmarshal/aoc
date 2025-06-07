@@ -18,7 +18,7 @@ sub process{
     chomp;
     next if /^$/;
     if(/(\d+)\|(\d+)/){
-      push @{$before{$2}},$1
+      $before{$2}{$1} = 1
     }
     else{push @pages,[split ',']}
   }
@@ -28,9 +28,8 @@ sub process{
 sub good{
   my ($arr) = @_;
   foreach my $i(0..$#$arr){
-    foreach my $j($i+1..$#$arr){
-      return 0 if any{$_ == $before{$arr->[$j]}}
-	@{$before{$arr->[$i]}}
+    foreach my $j(0..$i-1){
+      return 0 unless exists $before{$arr->[$i]}{$arr->[$j]}
     }
   }
   1
@@ -38,19 +37,19 @@ sub good{
 
 sub part1{
   my $sum = 0;
-  foreach(@pages){
-    $sum += $_->[@$_/2] if good($_)
-  }
+  map{$sum += $_->[@$_/2] if good($_)} @pages;
   $sum
 }
 
 sub part2{
+  # order incorrectly ordered pages.
+  # get sum of middle elems.
   0
 }
 
 process($ARGV[0]);
 print show %before;
-#print show @pages;
+print show @pages;
 printf "Part1: %d\n",part1();
 printf "Part2: %d\n",part2();
 
