@@ -2,14 +2,12 @@
 # https://adventofcode.com/2024/day/5
 use strict;
 use warnings;
-use List::Util qw(any);
-use Data::Show;
 
 die "Usage: $0 input.txt" unless @ARGV == 1
   && $ARGV[0] =~ /\w+/;
 
-my %before;
-my @pages;
+my %rules;
+my (@pages,@sorted);
 
 sub process{
   my ($file) = @_;
@@ -18,38 +16,36 @@ sub process{
     chomp;
     next if /^$/;
     if(/(\d+)\|(\d+)/){
-      $before{$2}{$1} = 1
+      $rules{$1}{$2} = -($rules{$2}{$1} = 1)
     }
-    else{push @pages,[split ',']}
+    else{
+      my @l = (/[0-9]+/g);
+      push @pages, \@l;
+      push @sorted,[sort {$rules{$a}{$b}} @l]
+    }
   }
   close $fh;
 }
 
-sub good{
-  my ($arr) = @_;
-  foreach my $i(0..$#$arr){
-    foreach my $j(0..$i-1){
-      return 0 unless exists $before{$arr->[$i]}{$arr->[$j]}
-    }
-  }
-  1
-}
-
 sub part1{
   my $sum = 0;
-  map{$sum += $_->[@$_/2] if good($_)} @pages;
+  foreach my $i(0..$#pages) {
+    $sum += $pages[$i][@{$pages[$i]}/2]
+      if (join '',@{$pages[$i]}) eq (join '',@{$sorted[$i]})
+  }
   $sum
 }
 
 sub part2{
-  # order incorrectly ordered pages.
-  # get sum of middle elems.
-  0
+  my $sum = 0;
+  foreach my $i(0..$#pages) {
+    $sum += $sorted[$i][@{$sorted[$i]}/2]
+      if (join '',@{$pages[$i]}) ne (join '',@{$sorted[$i]})
+  }
+  $sum
 }
 
 process($ARGV[0]);
-print show %before;
-print show @pages;
 printf "Part1: %d\n",part1();
 printf "Part2: %d\n",part2();
 
