@@ -4,7 +4,6 @@ use strict;
 use warnings;
 use File::Slurp;
 use Set::Scalar;
-use Data::Show;
 
 die "Usage: $0 input.txt" unless @ARGV == 1
   && $ARGV[0] =~ /\w+/;
@@ -14,15 +13,14 @@ my @contents = split '',$s;
 
 sub move{
   my ($start,$c) = @_;
-  my $new = $start;
   if($c eq '^') {
-    $start = $new->{y}++
+    $start->{y}++
   } elsif($c eq '>') {
-    $start = $new->{x}++
+    $start->{x}++
   } elsif($c eq '<') {
-    $start = $new->{x}--
+    $start->{x}--
   } elsif($c eq 'v') {
-    $start = $new->{y}--
+    $start->{y}--
   }
 }
 
