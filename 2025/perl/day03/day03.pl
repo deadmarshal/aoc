@@ -3,7 +3,6 @@
 use strict;
 use warnings;
 use List::Util qw(max);
-use Data::Show;
 
 die "Usage: $0 input.txt" unless @ARGV == 1 && $ARGV[0] =~ /\w+/;
 

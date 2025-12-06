@@ -2,7 +2,6 @@
 # https://adventofcode.com/2025/day/1
 use strict;
 use warnings;
-use Data::Show;
 
 die "Usage: $0 input.txt" unless @ARGV == 1 && $ARGV[0] =~ /\w+/;
 
